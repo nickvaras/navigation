@@ -290,6 +290,16 @@ private:
     for (unsigned int i = 0; i < end; ++i)
     {
       at(offset, z_mask);
+      
+      ///  Clear one voxel above and one below
+      off_c(offset_c);  //go up
+      at(offset, z_mask);  //clear
+      off_c(-offset_c);   //go down 
+      off_c(-offset_c);    //go down 
+      at(offset, z_mask);  //clear
+      off_c(offset_c);   //go up and back where you started
+      ///
+      
       off_a(offset_a);
       error_b += abs_db;
       error_c += abs_dc;
